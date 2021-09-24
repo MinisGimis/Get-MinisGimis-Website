@@ -78,7 +78,7 @@ function App() {
 
     }, 1000);
     return () => clearInterval(interval);
-  }, [time]);
+  }, [time, minisgimisPower]);
 
   return (
     <div className="App">
