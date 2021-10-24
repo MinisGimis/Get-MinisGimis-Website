@@ -214,7 +214,7 @@ function App() {
           <p className="alerts" id="notification"></p>
           <header className="logCounter" id="header">
             <p>{logs}
-            <img className="log" src={logImage}></img>
+            <img className="log" src={logImage} alt="log"></img>
             </p>
           </header>
           
@@ -223,22 +223,22 @@ function App() {
               <button onClick={() => {
                 minisgimisIt()
               }}>Chop {minisgimisPower} Trees!{" "}
-              <img className="actionIcon" src={treeImage}></img></button>
+              <img className="actionIcon" src={treeImage} alt="tree"></img></button>
               <button onClick={() => {
                 increasePower()
-              }}>Feed MinisGimis!{" "}<img className="actionIcon" src={donutImage}></img></button>
+              }}>Feed MinisGimis!{" "}<img className="actionIcon" src={donutImage} alt="donut"></img></button>
 
               <button onClick={() => {
                 sellLogs()
               }}
-              >Sell{" "}<img className="actionIcon" src={logImage}></img>
+              >Sell{" "}<img className="actionIcon" src={logImage} alt="log2"></img>
 
               </button>
 
               <button id="workerbtn" onClick={() => {
                 buyWorker()
               }}
-              >Hire Workers {" "}<img className="actionIcon" src={picture()}></img>
+              >Hire Workers {" "}<img className="actionIcon" src={picture()} alt="worker"></img>
 
               </button>
 
