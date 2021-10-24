@@ -121,19 +121,11 @@ function App() {
       var worker_button = document.getElementById('workerbtn')
 
       if ((workers > 0) && (payday > 0)) {
-        setpayday(prevday => prevday - 1)
+        setpayday(prevday => prevday - 10)
         setlogs(prevlogs => prevlogs + workers*workerValue)
       }
-
-      if (payday > 0) {
-        worker_button.value = ('Hire Workers')
-      }
-
-      if (payday === 0) {
-        worker_button.value = (`Pay Workers's Salary <h3></h3>`)
-      }
       
-    }, 500);
+    }, 50);
     return () => clearInterval(interval);
   }, [payday, workerValue, workers]);
 
@@ -200,6 +192,15 @@ function App() {
     }
   }
 
+  function workerDesc() {
+    if (payday < 1) {
+      return ("Pay Workers' Salaries")
+    }
+    else {
+      return ("Hire Worker")
+    }
+  }
+
   return (
     <div className="App">
         <div className="notifications">
@@ -238,7 +239,7 @@ function App() {
               <button id="workerbtn" onClick={() => {
                 buyWorker()
               }}
-              >Hire Workers {" "}<img className="actionIcon" src={picture()} alt="worker"></img>
+              >{workerDesc()} {" "}<img className="actionIcon" src={picture()} alt="worker"></img>
 
               </button>
 
