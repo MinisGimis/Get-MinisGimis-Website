@@ -33,7 +33,7 @@ function App() {
   })
 
   const [payday, setpayday] = useState(() => {
-    return 600
+    return 300
   })
 
   const [workerValue, setworkerValue] = useState(() => {
@@ -51,7 +51,7 @@ function App() {
     if (payday === 0) {
       var payment = workers*50 + workers*50*logValue
       if (balance >= payment) {
-        setpayday(600)
+        setpayday(300)
         setworkers(0)
         setbalance(prevbal => prevbal - payment)
         notification_bar.innerHTML = (`You paid $${payment.toFixed(2)} as salary to your workers`.bold())
@@ -118,14 +118,13 @@ function App() {
     setbalance(prevbal => Math.round(prevbal*100)/100)
     const interval = setInterval(() => {
       //console.log(payday)
-      var worker_button = document.getElementById('workerbtn')
 
       if ((workers > 0) && (payday > 0)) {
         setpayday(prevday => prevday - 10)
         setlogs(prevlogs => prevlogs + workers*workerValue)
       }
       
-    }, 50);
+    }, 500);
     return () => clearInterval(interval);
   }, [payday, workerValue, workers]);
 
