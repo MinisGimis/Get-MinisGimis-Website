@@ -22,6 +22,10 @@
   padding-bottom: 10vh;
 }
 
+.h3 {
+  background-color: yellowgreen;
+}
+
 .alerts {
   vertical-align: bottom;
   background-color: #fefae0;
@@ -43,14 +47,13 @@
   text-align: center;
   margin: 0 auto;
   display: block;
+  
 }
 
 .actions img {
   vertical-align: middle;
   max-height: 4vh;
 }
-
-
 
 .actions button {
   background-color: #606c38; /* Green background */

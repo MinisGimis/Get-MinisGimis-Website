@@ -1,5 +1,10 @@
 import './App.css';
 import React, { useState, useEffect } from 'react'
+import workerImage from './images/worker.png'
+import logImage from './images/log.png'
+import treeImage from './images/tree.png'
+import donutImage from './images/donut.png'
+import payImage from './images/pay.png'
 
 function App() {
 
@@ -121,11 +126,11 @@ function App() {
       }
 
       if (payday > 0) {
-        worker_button.innerHTML = ('Hire Workers <img className="actionIcon" src="https://images.emojiterra.com/google/android-pie/512px/1f477.png"></img>')
+        worker_button.value = ('Hire Workers')
       }
 
       if (payday === 0) {
-        worker_button.innerHTML = (`Pay Workers's Salary <img className="actionIcon" src="https://www.oradell.com/wp-content/uploads/2020/07/cash-icon.png"></img>`)
+        worker_button.value = (`Pay Workers's Salary <h3></h3>`)
       }
       
     }, 500);
@@ -186,6 +191,15 @@ function App() {
     return () => clearInterval(interval);
   }, [time, minisgimisPower, balance, logValue, workerValue]);
 
+  function picture() {
+    if (payday === 0) {
+      return payImage
+    }
+    else {
+      return workerImage
+    }
+  }
+
   return (
     <div className="App">
         <div className="notifications">
@@ -200,7 +214,7 @@ function App() {
           <p className="alerts" id="notification"></p>
           <header className="logCounter" id="header">
             <p>{logs}
-            <img className="log" src="http://assets.stickpng.com/images/58bf18f9e443f41d77c7348c.png"></img>
+            <img className="log" src={logImage}></img>
             </p>
           </header>
           
@@ -209,22 +223,22 @@ function App() {
               <button onClick={() => {
                 minisgimisIt()
               }}>Chop {minisgimisPower} Trees!{" "}
-              <img className="actionIcon" src="https://www.jing.fm/clipimg/full/360-3609521_tree-simple-tree-nature-spring-summer-landscape.png"></img></button>
+              <img className="actionIcon" src={treeImage}></img></button>
               <button onClick={() => {
                 increasePower()
-              }}>Feed MinisGimis!{" "}<img className="actionIcon" src="https://pngimg.com/uploads/donut/donut_PNG63.png"></img></button>
+              }}>Feed MinisGimis!{" "}<img className="actionIcon" src={donutImage}></img></button>
 
               <button onClick={() => {
                 sellLogs()
               }}
-              >Sell{" "}<img className="actionIcon" src="http://assets.stickpng.com/images/58bf18f9e443f41d77c7348c.png"></img>
+              >Sell{" "}<img className="actionIcon" src={logImage}></img>
 
               </button>
 
               <button id="workerbtn" onClick={() => {
                 buyWorker()
               }}
-              >Hire Workers {" "}<img className="actionIcon" src="https://images.emojiterra.com/google/android-pie/512px/1f477.png"></img>
+              >Hire Workers {" "}<img className="actionIcon" src={picture()}></img>
 
               </button>
 
