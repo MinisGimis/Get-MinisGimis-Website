@@ -1,57 +1,69 @@
-.App {
-  text-align: center;
+.notifications {
+  background-color: #606c38;
+  color: #fefae0;
+  font-weight: bold;
+  font-size: larger;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 8vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.log {
+  max-height: 51px;
+  vertical-align: middle;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.logCounter {
+  justify-content: center;
+  font-size: xx-large;
+  font-weight: bold;
+  color: #283618;
+  padding-bottom: 10vh;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.alerts {
+  vertical-align: bottom;
+  background-color: #fefae0;
+  height: 15vh;
+}
+
+.balance {
+  margin-top: 0px;
+}
+
+.appBody {
+  height: 92vh;
+  background-color: #fefae0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 500%;
-  color: white;
+  text-align: center;
 }
-
-.btn {
-  padding: 5px 10px;
-}
-
-
-
-
-.btn-group button {
-  padding: 10px 24px; /* Some padding */
-  cursor: pointer; 
-  width: 100%; 
+.actions {
+  text-align: center;
+  margin: 0 auto;
   display: block;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold
+}
+
+.actions img {
+  vertical-align: middle;
+  max-height: 4vh;
 }
 
 
 
-.App-link {
-  color: #61dafb;
-}
+.actions button {
+  background-color: #606c38; /* Green background */
+  border: 1px solid #283618; /* Green border */
+  color: #fefae0; /* White text */
+  font-weight: bold;
+  font-size: large;
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  max-width: 100vw;
+  width: 500px;
+  height: 8vh;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  display: block; /* Make the buttons appear below each other */
+
 }

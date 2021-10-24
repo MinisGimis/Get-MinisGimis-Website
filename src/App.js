@@ -49,12 +49,12 @@ function App() {
         setpayday(600)
         setworkers(0)
         setbalance(prevbal => prevbal - payment)
-        notification_bar.innerHTML = (`You paid $${payment} as salary to your workers`.bold())
+        notification_bar.innerHTML = (`You paid $${payment.toFixed(2)} as salary to your workers`.bold())
         setTime(2)
       }
 
       else {
-        notification_bar.innerHTML = (`You need $${payment} to pay your workers.`)
+        notification_bar.innerHTML = (`You need $${payment.toFixed(2)} to pay your workers.`)
         setTime(2)
       }
     }
@@ -63,11 +63,11 @@ function App() {
       if (balance >= workerCost) {
         setworkers(prevworkers => prevworkers + 1)
         setbalance(prevbal => prevbal - workerCost)
-        notification_bar.innerHTML = (`You bought another worker for $${workerCost}! Now you have ${workers + 1} workers`.bold())
+        notification_bar.innerHTML = (`You bought another worker for $${workerCost.toFixed(2)}! Now you have ${workers + 1} workers`.bold())
         setTime(2)
       }
       else {
-        notification_bar.innerHTML = (`You need $${workerCost} to buy another worker.`)
+        notification_bar.innerHTML = (`You need $${workerCost.toFixed(2)} to buy another worker.`)
         setTime(2)
       }
     }
@@ -78,7 +78,7 @@ function App() {
     var required = Math.round(((minisgimisPower*minisgimisPower)*0.75) + 10)
     if (balance < required) {
       
-      notification_bar.innerHTML = (`not enough money, need $${required} to feed MinisGimis!`)
+      notification_bar.innerHTML = (`not enough money, need $${required.toFixed(2)} to feed MinisGimis!`)
       setTime(3)
       
     }
@@ -95,7 +95,7 @@ function App() {
     if (logs > 0) {
       var notification_bar = document.getElementById("notification")
       var value = Math.round(logs*logValue*100)/100
-      notification_bar.innerHTML = (`you sold ${logs} logs for $${logValue} each, earning $${value}`.bold())
+      notification_bar.innerHTML = (`you sold ${logs} logs for $${logValue.toFixed(2)} each, earning $${value.toFixed(2)}`.bold())
       setbalance(prebal => prebal + value)
       setlogs(0)
       setTime(2)
@@ -105,6 +105,8 @@ function App() {
   function moreInformation() {
     alert("Random website made by MinisGimis to test out React hooks and Azure Static Web Apps. You can contact me on Discord at MinisGimis#3308 or dk3zhang@uwaterloo.ca.\nClicking on Chop x Trees will give you logs, you can sell your logs for money. Feeding MinisGimis will cost money but will increase your logs per click. You can spend money to hire some workers for a few minutes. At the end of the duration, you will need to pay the workers their salary before being able to hire workers again. There are also bonus events giving you beneficial perks.")
   }
+
+
 
   //auto workers
   useEffect(() => {
@@ -119,11 +121,11 @@ function App() {
       }
 
       if (payday > 0) {
-        worker_button.innerHTML = ("Hire Workers")
+        worker_button.innerHTML = ('Hire Workers <img className="actionIcon" src="https://images.emojiterra.com/google/android-pie/512px/1f477.png"></img>')
       }
 
       if (payday === 0) {
-        worker_button.innerHTML = ("Pay workers' salary")
+        worker_button.innerHTML = (`Pay Workers's Salary <img className="actionIcon" src="https://www.oradell.com/wp-content/uploads/2020/07/cash-icon.png"></img>`)
       }
       
     }, 500);
@@ -139,7 +141,7 @@ function App() {
       //console.log(time)
 
       if (time === 0) {
-        notification_bar.innerHTML=(`Balance: $${balance}`)
+        notification_bar.innerHTML=(` `)
       }
 
       if (lucky_num < 0.025 && lucky_num > 0.015) {
@@ -163,7 +165,7 @@ function App() {
 
       if (lucky_num < 0.035 && lucky_num > 0.025) {
         var increase2 = Math.round((Math.random()*(logValue*100)))/100
-        notification_bar.innerHTML=(`MinisGimis just achieved some englightenment! Log value increased by $${increase2}!`.bold())
+        notification_bar.innerHTML=(`MinisGimis just achieved some englightenment! Log value increased by $${increase2.toFixed(2)}!`.bold())
         console.log("better logs!")
         setlogValue(prevval => prevval + increase2)
         setTime(3)
@@ -186,43 +188,57 @@ function App() {
 
   return (
     <div className="App">
-      
-        <p id="notification">Balance: ${balance}</p>
-        <button className="btn" onClick={
-          () => {
-            moreInformation()
-          }
-        }>more information</button>
-      
-        <header className="App-header" id="header">{logs} Logs
+        <div className="notifications">
+          <nav>
+            <p className="balance">Balance: ${balance.toFixed(2)}</p>
+            
+            </nav>
+        </div>
         
-          <div className="btn-group">
 
-            <button onClick={() => {
-              minisgimisIt()
-            }}>Chop {minisgimisPower} Trees!</button>
-            <button onClick={() => {
-              increasePower()
-            }}>Feed MinisGimis!</button>
+        <div className="appBody">
+          <p className="alerts" id="notification"></p>
+          <header className="logCounter" id="header">
+            <p>{logs}
+            <img className="log" src="http://assets.stickpng.com/images/58bf18f9e443f41d77c7348c.png"></img>
+            </p>
+          </header>
+          
+            <div className="actions">
 
-            <button onClick={() => {
-              sellLogs()
-            }}
-            >Sell Logs
+              <button onClick={() => {
+                minisgimisIt()
+              }}>Chop {minisgimisPower} Trees!{" "}
+              <img className="actionIcon" src="https://www.jing.fm/clipimg/full/360-3609521_tree-simple-tree-nature-spring-summer-landscape.png"></img></button>
+              <button onClick={() => {
+                increasePower()
+              }}>Feed MinisGimis!{" "}<img className="actionIcon" src="https://pngimg.com/uploads/donut/donut_PNG63.png"></img></button>
 
-            </button>
+              <button onClick={() => {
+                sellLogs()
+              }}
+              >Sell{" "}<img className="actionIcon" src="http://assets.stickpng.com/images/58bf18f9e443f41d77c7348c.png"></img>
 
-            <button id="workerbtn" onClick={() => {
-              buyWorker()
-            }}
-            >Hire Workers
+              </button>
 
-            </button>
+              <button id="workerbtn" onClick={() => {
+                buyWorker()
+              }}
+              >Hire Workers {" "}<img className="actionIcon" src="https://images.emojiterra.com/google/android-pie/512px/1f477.png"></img>
 
-          </div>
+              </button>
+
+            <button onClick={
+              () => {
+                moreInformation()
+              }
+            }>More Information</button>
+
+            </div>
 
 
-        </header>
+          
+        </div>
 
 
     </div>
