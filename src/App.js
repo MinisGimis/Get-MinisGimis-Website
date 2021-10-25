@@ -33,7 +33,7 @@ function App() {
   })
 
   const [payday, setpayday] = useState(() => {
-    return 300
+    return 240
   })
 
   const [workerValue, setworkerValue] = useState(() => {
@@ -51,7 +51,7 @@ function App() {
     if (payday === 0) {
       var payment = workers*50 + workers*50*logValue
       if (balance >= payment) {
-        setpayday(300)
+        setpayday(240)
         setworkers(0)
         setbalance(prevbal => prevbal - payment)
         notification_bar.innerHTML = (`You paid $${payment.toFixed(2)} as salary to your workers`.bold())
@@ -120,7 +120,7 @@ function App() {
       //console.log(payday)
 
       if ((workers > 0) && (payday > 0)) {
-        setpayday(prevday => prevday - 10)
+        setpayday(prevday => prevday - 1)
         setlogs(prevlogs => prevlogs + workers*workerValue)
       }
       
